@@ -1,0 +1,690 @@
+{
+  "supportWeapons": [
+    {
+      "id": "aa360c57-be30-4e68-a470-5c4f5c972c05",
+      "name": "Alexandria-class",
+      "modelNumber": null,
+      "codename": null,
+      "faction": "Titans",
+      "otherNames": [],
+      "japaneseName": "アレキサンドリア級",
+      "summary": "The Alexandria-class is a class of heavy space cruiser introduced in the anime Mobile Suit Zeta Gundam.",
+      "category": "Ship",
+      "classification": "Heavy Cruiser",
+      "production": "Limited Production",
+      "usage": null,
+      "specialization": null,
+      "environment": "Space",
+      "transformable": false,
+      "firstDeployed": "0083",
+      "lastDeployed": null,
+      "debut": null,
+      "era": "Universal Century",
+      "designers": [],
+      "developedFrom": ["Musai-class", "Pegasus-class"],
+      "manufacturers": ["Earth Federation"],
+      "operators": ["Earth Federation Forces", "Titans"],
+      "pilots": [
+        "Paptimus Scirocco",
+        "Alpha A. Bait",
+        "Bernard Monsha",
+        "Chap Adel",
+        "Lila Milla Rira",
+        "Jerid Messa",
+        "Yazan Gable",
+        "Kacricon Cacooler"
+      ],
+      "captains": [
+        "Ted Ayachi (Hario)",
+        "Gady Kinsey (Alexandria)",
+        "Hank Ryan (Belgrade)",
+        "Nishizawa (Tel Aviv)",
+        "Killian (Luxor)",
+        "Emmet Brown (Mesopotamia)"
+      ],
+      "crew": [
+        "Bask Om",
+        "Jamaican Daninghan",
+        "Paptimus Scirocco",
+        "Eliard Hunter",
+        "Masada",
+        "Sarchin",
+        "Franklin Bidan",
+        "Hilda Bidan",
+        "Muryo",
+        "Buto",
+        "Bach",
+        "Godoji Gosh",
+        "Musool",
+        "Ivan Paserov",
+        "Jacqueline Simone",
+        "Peter Scott",
+        "Akram Harida",
+        "William Morris",
+        "Lila Milla Rira"
+      ],
+      "shipsOfTheLine": [
+        "Alexandria",
+        "Ahvaz",
+        "Al Giza",
+        "Al Qasr",
+        "Belgrade",
+        "Hario",
+        "Kandahar",
+        "Key West",
+        "Luxor",
+        "Mesopotamia",
+        "Tel Aviv",
+        "Flower Garden"
+      ],
+      "specs": {
+        "heightM": null,
+        "lengthM": 354,
+        "widthM": 98,
+        "weightT": null,
+        "powerOutputKw": null,
+        "powerplant": "Minovsky-Ionesco Fusion Reactor",
+        "propulsion": [],
+        "armor": []
+      },
+      "mobileSuitOperations": {
+        "hangars": 2,
+        "catapults": 4,
+        "capacity": "8-12",
+        "complement": [
+          {
+            "group": "Alexandria",
+            "units": [
+              "RMS-106 Hizack",
+              "RMS-179 GM II",
+              "ORX-005 Gaplant",
+              "RMS-108 Marasai",
+              "RMS-117 Galbaldy β",
+              "RX-110 Gabthley",
+              "RMS-154 Barzam",
+              "RX-139 Hambrabi"
+            ]
+          },
+          {
+            "group": "Al Giza",
+            "units": ["RGM-79Q GM Quel"]
+          },
+          {
+            "group": "Hario",
+            "units": ["MS-06K Zaku Cannon", "PMX-000 Messala", "RMS-106 Hizack"]
+          },
+          {
+            "group": "Flower Garden",
+            "units": ["RGM-79WN GM Gram", "GM Gram Sky"]
+          }
+        ]
+      },
+      "equipment": {
+        "standard": [],
+        "optional": ["4 x External Fuel Tank"]
+      },
+      "armaments": {
+        "fixed": [
+          "4 x Twin Mega Particle Gun (Original)",
+          "2 x Mega Particle Gun (Original)",
+          "4 x Twin Anti-Aircraft Gun (Original)",
+          "4 x Anti-Aircraft Gun (Original)",
+          "? x Missile Launcher (Original)",
+          "6 x Twin Mega Particle Gun (Hario Refit)",
+          "2 x Mega Particle Gun (Hario Refit)",
+          "2 x Twin Anti-Aircraft Gun (Hario Refit)",
+          "4 x Anti-Aircraft Gun (Hario Refit)",
+          "? x Missile Launcher (Hario Refit)",
+          "Twin Mega Particle Gun (Flower Garden Refit)",
+          "3 x Mega Particle Gun (Flower Garden Refit)",
+          "6 x Missile Launcher (Flower Garden Refit)",
+          "5 x Twin Anti-Aircraft Gun (Flower Garden Refit)"
+        ],
+        "handheld": [],
+        "optionalFixed": [],
+        "optionalHandheld": []
+      },
+      "appearances": [
+        "Mobile Suit Zeta Gundam",
+        "Mobile Suit Gundam 0083: Stardust Memory",
+        "Mobile Suit Gundam 0083 Rebellion",
+        "Mobile Suit Zeta Gundam Define",
+        "Mobile Suit Gundam: Gundam vs. Zeta Gundam",
+        "Mobile Suit Gundam Valpurgis"
+      ],
+      "image": "Alexandria.jpg",
+      "imageUrl": "https://gundam.fandom.com/wiki/Special:FilePath/Alexandria.jpg",
+      "images": [
+        {
+          "file": "Alexandria.jpg",
+          "caption": "Front (MSZG)"
+        },
+        {
+          "file": "Alexandria-back.jpg",
+          "caption": "Rear (MSZG)"
+        },
+        {
+          "file": "AOZAlexfront.jpg",
+          "caption": "Front (AOZ)"
+        },
+        {
+          "file": "AOZAlexback.jpg",
+          "caption": "Rear (AOZ)"
+        }
+      ],
+      "wikiUrl": "https://gundam.fandom.com/wiki/Alexandria-class",
+      "sourcePage": "Alexandria-class",
+      "extra": {}
+    },
+    {
+      "id": "f2a44547-569e-4942-991e-9f85f1df592b",
+      "name": "Emergency Escape Pod [Primrose]",
+      "modelNumber": "MP-X86",
+      "codename": "Primrose",
+      "faction": "Titans",
+      "otherNames": ["MP-X86 Mobile Pod [Primrose]"],
+      "japaneseName": "緊急脱出ポッド, MP-X86［プリムローズ］",
+      "summary": "The Emergency Escape Pod [Primrose], also known as the MP-X86 Mobile Pod [Primrose], is a support vehicle that appears in the photo-novel Advance of Zeta: The Flag of Titans.",
+      "category": "Vehicle",
+      "classification": null,
+      "production": null,
+      "usage": null,
+      "specialization": "Emergency Escape Pod",
+      "environment": null,
+      "transformable": false,
+      "firstDeployed": null,
+      "lastDeployed": null,
+      "debut": null,
+      "era": "Universal Century",
+      "designers": ["Kenki Fujioka"],
+      "developedFrom": [],
+      "manufacturers": ["Earth Federation Forces (Konpeitoh Arsenal)"],
+      "operators": ["Titans Test Team (Black Otter Team)"],
+      "pilots": ["Carl Matsubara", "Audrey April"],
+      "captains": [],
+      "crew": [],
+      "shipsOfTheLine": [],
+      "specs": {
+        "heightM": null,
+        "lengthM": null,
+        "widthM": null,
+        "weightT": null,
+        "powerOutputKw": null,
+        "powerplant": "Ultracompact Minovsky Fusion Reactor",
+        "propulsion": [],
+        "armor": []
+      },
+      "mobileSuitOperations": {
+        "hangars": null,
+        "catapults": null,
+        "capacity": null,
+        "complement": []
+      },
+      "equipment": {
+        "standard": [],
+        "optional": []
+      },
+      "armaments": {
+        "fixed": ["Vulcan Cannon (Primrose [Period Model])"],
+        "handheld": [],
+        "optionalFixed": [
+          "Shield Booster",
+          "Enhanced Shield Booster",
+          "Tri-Booster Unit",
+          "Hrududu",
+          "Hrududu II",
+          "Missile Pod",
+          "Open Barrel Cannon"
+        ],
+        "optionalHandheld": []
+      },
+      "appearances": [],
+      "image": "Primrose-type1.jpg",
+      "imageUrl": "https://gundam.fandom.com/wiki/Special:FilePath/Primrose-type1.jpg",
+      "images": [
+        {
+          "file": "Primrose-type1.jpg",
+          "caption": null
+        }
+      ],
+      "wikiUrl": "https://gundam.fandom.com/wiki/Emergency_Escape_Pod_%EF%BC%BBPrimrose%EF%BC%BD",
+      "sourcePage": "Emergency Escape Pod [Primrose]",
+      "extra": {}
+    },
+    {
+      "id": "acd8079f-0a44-4dfb-b9d4-38bb8123a023",
+      "name": "Primrose II",
+      "modelNumber": "MP-X87",
+      "codename": null,
+      "faction": "Titans",
+      "otherNames": [],
+      "japaneseName": "MP-X87, ARZ-124［プリムローズII］",
+      "summary": "The MP-X87 [Primrose II] is an escape pod that appears in the novel Advance of Zeta: The Flag of Titans.",
+      "category": "Pod",
+      "classification": null,
+      "production": null,
+      "usage": null,
+      "specialization": "Emergency Escape",
+      "environment": null,
+      "transformable": false,
+      "firstDeployed": null,
+      "lastDeployed": null,
+      "debut": null,
+      "era": "Universal Century",
+      "designers": ["Kenki Fujioka"],
+      "developedFrom": ["Emergency Escape Pod [Primrose]"],
+      "manufacturers": ["Earth Federation Forces (Konpeitoh Arsenal)"],
+      "operators": ["Titans Test Team (Black Otter Team)", "ReZeon"],
+      "pilots": [],
+      "captains": [],
+      "crew": [],
+      "shipsOfTheLine": [],
+      "specs": {
+        "heightM": null,
+        "lengthM": null,
+        "widthM": null,
+        "weightT": null,
+        "powerOutputKw": null,
+        "powerplant": null,
+        "propulsion": [],
+        "armor": []
+      },
+      "mobileSuitOperations": {
+        "hangars": null,
+        "catapults": null,
+        "capacity": null,
+        "complement": []
+      },
+      "equipment": {
+        "standard": ["BUNNyS"],
+        "optional": []
+      },
+      "armaments": {
+        "fixed": ["2 x Vulcan Gun"],
+        "handheld": [],
+        "optionalFixed": [],
+        "optionalHandheld": []
+      },
+      "appearances": [
+        "Advance of Zeta: The Flag of Titans",
+        "Advance of Zeta Re-Boot: Gundam Inle"
+      ],
+      "image": "Primrose-ii.jpg",
+      "imageUrl": "https://gundam.fandom.com/wiki/Special:FilePath/Primrose-ii.jpg",
+      "images": [
+        {
+          "file": "Primrose-ii.jpg",
+          "caption": "Front (T3 colors)"
+        },
+        {
+          "file": "Primrose_II_-_Front_-_AOZ_Re-Boot.jpg",
+          "caption": "Front (ReZeon colors)"
+        },
+        {
+          "file": "Primrose_II_-_Rear_-_AOZ_Re-Boot.jpg",
+          "caption": "Rear (ReZeon colors)"
+        }
+      ],
+      "wikiUrl": "https://gundam.fandom.com/wiki/Primrose_II",
+      "sourcePage": "Primrose II",
+      "extra": {}
+    },
+    {
+      "id": "fbf5b794-a49f-4119-acf1-1d5d0f98b9df",
+      "name": "FF-X29A G-Parts [Hrududu]",
+      "modelNumber": "FF-X29A",
+      "codename": "Hrududu",
+      "faction": "Titans",
+      "otherNames": [],
+      "japaneseName": "FF-X29A Gパーツ［フルドド］",
+      "summary": "The FF-X29A G-Parts [Hrududu] is a support fighter developed for use with the RX-121 Gundam TR-1 [Hazel Custom].",
+      "category": "Vehicle",
+      "classification": "Craft",
+      "production": "Prototype",
+      "usage": "Support",
+      "specialization": null,
+      "environment": null,
+      "transformable": false,
+      "firstDeployed": "June, 0087",
+      "lastDeployed": null,
+      "debut": null,
+      "era": "Universal Century",
+      "designers": ["Kenki Fujioka"],
+      "developedFrom": [],
+      "manufacturers": ["Earth Federation Forces"],
+      "operators": ["Titans Test Team (Black Otter Team)"],
+      "pilots": ["Audrey April"],
+      "captains": [],
+      "crew": [],
+      "shipsOfTheLine": [],
+      "specs": {
+        "heightM": null,
+        "lengthM": null,
+        "widthM": null,
+        "weightT": null,
+        "powerOutputKw": null,
+        "powerplant": "Minovsky Ultracompact Fusion Reactor",
+        "propulsion": [],
+        "armor": []
+      },
+      "mobileSuitOperations": {
+        "hangars": null,
+        "catapults": null,
+        "capacity": null,
+        "complement": []
+      },
+      "equipment": {
+        "standard": [],
+        "optional": []
+      },
+      "armaments": {
+        "fixed": [
+          "Claw Unit (Beam Emitter)",
+          "Beam Reflector Shields",
+          "Beam Cannon"
+        ],
+        "handheld": ["Long Blade Rifle"],
+        "optionalFixed": [],
+        "optionalHandheld": []
+      },
+      "appearances": [],
+      "image": "Rx-121-main.jpg",
+      "imageUrl": "https://gundam.fandom.com/wiki/Special:FilePath/Rx-121-main.jpg",
+      "images": [
+        {
+          "file": "Rx-121-main.jpg",
+          "caption": "Front"
+        },
+        {
+          "file": "Hrududu.jpeg",
+          "caption": "Rear"
+        },
+        {
+          "file": "Hrududu-ii.jpg",
+          "caption": "Dual Combination (Front)"
+        },
+        {
+          "file": "Hrududu_(Dual_Combination)_-_Rear.jpg",
+          "caption": "Dual Combination (Rear)"
+        }
+      ],
+      "wikiUrl": "https://gundam.fandom.com/wiki/FF-X29A_G-Parts_%EF%BC%BBHrududu%EF%BC%BD",
+      "sourcePage": "FF-X29A G-Parts [Hrududu]",
+      "extra": {}
+    },
+    {
+      "id": "95758790-ed41-4abb-81d2-c17b314457e9",
+      "name": "Hrududu II",
+      "modelNumber": "FF-X39A",
+      "codename": null,
+      "faction": "Titans",
+      "otherNames": ["ARZ-124 [Hrududu II]"],
+      "japaneseName": "FF-X39A G-Parts［フルドドII］",
+      "summary": "The FF-X39A G-Parts [Hrududu II], also known as the ARZ-124 TR-6 [Hrududu II], is a support machine that appears in the novel Advance of Zeta: The Flag of Titans.",
+      "category": "Vehicle",
+      "classification": "Craft",
+      "production": null,
+      "usage": "Support",
+      "specialization": null,
+      "environment": null,
+      "transformable": false,
+      "firstDeployed": "0087",
+      "lastDeployed": null,
+      "debut": "Advance of Zeta: The Flag of Titans",
+      "era": "Universal Century",
+      "designers": ["Kenki Fujioka"],
+      "developedFrom": [
+        "FF-X29A G-Parts [Hrududu]",
+        "MP-X87 [Primrose II] (C)"
+      ],
+      "manufacturers": ["Konpeitoh Arsenal"],
+      "operators": ["Titans Test Team (Black Otter Team)", "ReZeon"],
+      "pilots": ["Barbara"],
+      "captains": [],
+      "crew": [],
+      "shipsOfTheLine": [],
+      "specs": {
+        "heightM": null,
+        "lengthM": null,
+        "widthM": null,
+        "weightT": null,
+        "powerOutputKw": null,
+        "powerplant": null,
+        "propulsion": [],
+        "armor": []
+      },
+      "mobileSuitOperations": {
+        "hangars": null,
+        "catapults": null,
+        "capacity": null,
+        "complement": []
+      },
+      "equipment": {
+        "standard": ["Multi-Arm Unit", "MP-X87 [Primrose II]"],
+        "optional": []
+      },
+      "armaments": {
+        "fixed": [
+          "2 x Beam Emitter",
+          "2 x Claw Unit",
+          "Beam Reflectors",
+          "High Mega Cannon",
+          "2 x Shoulder Unit"
+        ],
+        "handheld": ["Composite Shield Booster", "2 x Winch Cannon"],
+        "optionalFixed": [],
+        "optionalHandheld": []
+      },
+      "appearances": [
+        "Advance of Zeta: The Flag of Titans",
+        "Advance of Zeta Re-Boot: Gundam Inle"
+      ],
+      "image": "Hrududu II.jpeg",
+      "imageUrl": "https://gundam.fandom.com/wiki/Special:FilePath/Hrududu_II.jpeg",
+      "images": [
+        {
+          "file": "Hrududu II.jpeg",
+          "caption": "Standard"
+        },
+        {
+          "file": "Primrose_II_-_Hrududu_II.jpg",
+          "caption": "w/ Boosters"
+        }
+      ],
+      "wikiUrl": "https://gundam.fandom.com/wiki/Hrududu_II",
+      "sourcePage": "Hrududu II",
+      "extra": {}
+    },
+    {
+      "id": "405333cd-fc0b-4cab-9849-2c172cf59a03",
+      "name": "Salamis Kai-class",
+      "modelNumber": null,
+      "codename": null,
+      "faction": "Titans",
+      "otherNames": [],
+      "japaneseName": "サラミス改",
+      "summary": "The Salamis Kai-class is a class of Earth Federation Forces space cruiser introduced in the anime Mobile Suit Zeta Gundam.",
+      "category": "Ship",
+      "classification": "Light Cruiser",
+      "production": "Mass Production",
+      "usage": null,
+      "specialization": null,
+      "environment": "Space",
+      "transformable": false,
+      "firstDeployed": "0084",
+      "lastDeployed": "0153",
+      "debut": null,
+      "era": "Universal Century",
+      "designers": ["Kunio Okawara"],
+      "developedFrom": ["Salamis-class", "Salamis Kai-class (0083 Refit)"],
+      "manufacturers": ["Earth Federation"],
+      "operators": [
+        "Earth Federation Forces",
+        "Titans",
+        "Anti Earth Union Group",
+        "League Militaire",
+        "New Desides",
+        "Task Force Alpha",
+        "Macedonia Army"
+      ],
+      "pilots": [],
+      "captains": [
+        "Cristian Kirk (Delphi)",
+        "Thomas Schroeder (Izmir)",
+        "Chang Ya (Bosnia)",
+        "Gisele Albert (Eretria)"
+      ],
+      "crew": ["Lila Milla Rira", "Amuro Ray", "Bask Om"],
+      "shipsOfTheLine": [
+        "Aoba",
+        "Arahas",
+        "Arahas II",
+        "Artemis",
+        "Astoria",
+        "Atlanta",
+        "Atlantis",
+        "Bosnia",
+        "Brasilia",
+        "Brunei",
+        "Canberra",
+        "Cecilia",
+        "Chicago",
+        "Cumberland",
+        "Danang",
+        "Delphi",
+        "Dortmund",
+        "Dunkerque",
+        "Esmeralda",
+        "Erertria",
+        "Exeter",
+        "Helat",
+        "Herman",
+        "Izmir",
+        "Kashima",
+        "Long Beach",
+        "Lune",
+        "Macedonia",
+        "Madagascar",
+        "Madras",
+        "Mckinley",
+        "Mogami",
+        "Mont Blanc",
+        "Panama II",
+        "Pasedena",
+        "Philadelphia",
+        "Portland",
+        "Prinz Eugen",
+        "Rene",
+        "Repulse",
+        "Salamanca",
+        "Seikyou",
+        "Sheffield",
+        "Sichuan",
+        "Sicily",
+        "Siviant II",
+        "Stockholm",
+        "Strasbourg",
+        "Suruga",
+        "Stykisholmur",
+        "Sussex",
+        "Takao",
+        "Trent",
+        "Trieste",
+        "Ulysses",
+        "Valencia",
+        "Volgograd",
+        "York"
+      ],
+      "specs": {
+        "heightM": 56,
+        "lengthM": 198,
+        "widthM": 75,
+        "weightT": null,
+        "powerOutputKw": null,
+        "powerplant": "Minovsky-Ionesco Fusion Reactor",
+        "propulsion": [
+          "Thermonuclear Rockets",
+          "Minovsky Craft System (later modification)"
+        ],
+        "armor": []
+      },
+      "mobileSuitOperations": {
+        "hangars": null,
+        "catapults": 1,
+        "capacity": 4,
+        "complement": [
+          {
+            "group": "Earth Federation Forces/Titans - UC 84-87",
+            "units": [
+              "RMS-106 Hizack",
+              "RMS-117 Galbaldy β",
+              "RMS-108 Marasai",
+              "RMS-154 Barzam"
+            ]
+          },
+          {
+            "group": "UC 88-100",
+            "units": ["RGM-86R GM III", "RGM-89 Jegan"]
+          },
+          {
+            "group": "AEUG",
+            "units": ["RMS-179 GM II", "MSA-003 Nemo"]
+          }
+        ]
+      },
+      "equipment": {
+        "standard": ["Reentry Capsule"],
+        "optional": []
+      },
+      "armaments": {
+        "fixed": [
+          "2 x 2-barrel Main Cannon",
+          "5 x Secondary Cannon",
+          "6-10 x Twin Machine Gun",
+          "0-4 x Machine Gun",
+          "16 x Missile Launcher"
+        ],
+        "handheld": [],
+        "optionalFixed": [],
+        "optionalHandheld": []
+      },
+      "appearances": [
+        "Mobile Suit Zeta Gundam",
+        "Mobile Suit Gundam ZZ",
+        "Mobile Suit Gundam: Char's Counterattack Advance of Zeta: The Traitor to Destiny",
+        "Mobile Suit Gundam Unicorn",
+        "Mobile Suit Victory Gundam",
+        "Mobile Suit Gundam F91",
+        "Mobile Suit Gundam: Gundam vs. Zeta Gundam",
+        "Gundam Sentinel",
+        "Mobile Suit Zeta Gundam Define",
+        "Mobile Suit Gundam 0083 Rebellion",
+        "Under the Gundam: Double-Fake",
+        "Mobile Suit Gundam École du Ciel"
+      ],
+      "image": "Advanced-salamis-titans.jpg",
+      "imageUrl": "https://gundam.fandom.com/wiki/Special:FilePath/Advanced-salamis-titans.jpg",
+      "images": [
+        {
+          "file": "EFF SKai.jpg",
+          "caption": "Earth Federation Forces colors"
+        },
+        {
+          "file": "Advanced-salamis-titans.jpg",
+          "caption": "Titans colors"
+        },
+        {
+          "file": "Advanced-salamis-aeug.jpg",
+          "caption": "AEUG colors"
+        },
+        {
+          "file": "SKai rear.jpg",
+          "caption": "Rear"
+        }
+      ],
+      "wikiUrl": "https://gundam.fandom.com/wiki/Salamis_Kai-class",
+      "sourcePage": "Salamis Kai-class",
+      "extra": {}
+    }
+  ]
+}
