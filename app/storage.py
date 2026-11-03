@@ -1,7 +1,7 @@
 from pathlib import Path
 import json
 
-DATA_DIR = Path(__file__).resolve().parents[2] / "data"
+DATA_DIR = Path(__file__).resolve().parents[1] / "data"
 DATA_FILE = DATA_DIR / "mobile_weapons.json"
 
 

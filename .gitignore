@@ -1,0 +1,9 @@
+#environment
+.env
+
+#folders
+/data
+/scripts
+/supabase
+/.venv
+/.vscode

@@ -194,3 +194,145 @@ class SupportWeapon(CamelModel):
     wiki_url: Optional[str] = None
     source_page: Optional[str] = None
     extra: dict[str, str] = Field(default_factory=dict)
+
+
+class KitType(str, Enum):
+    """What a model kit contains: a full unit, add-on parts, a conversion kit, or a bundle."""
+
+    FULL_KIT = "Full Kit"
+    EXPANSION_SET = "Expansion Set"
+    CONVERSION_KIT = "Conversion Kit"
+    MULTI_KIT_SET = "Multi-Kit Set"
+
+
+class Distribution(str, Enum):
+    """How a model kit was sold."""
+
+    GENERAL_RETAIL = "General Retail"
+    PREMIUM_BANDAI = "Premium Bandai"
+    THE_GUNDAM_BASE = "The Gundam Base"
+    GUNDAM_SIDE_F = "Gundam Side-F"
+    MAGAZINE_GIVEAWAY = "Magazine Giveaway"
+    MAIL_ORDER = "Mail Order"
+
+
+class Price(CamelModel):
+    """Original retail price of a model kit."""
+
+    amount: int
+    currency: str = "JPY"
+    tax_included: bool = False
+
+
+class KitUnit(CamelModel):
+    """A unit depicted by a model kit, linked to its Mobile/Support Weapon entry if one exists."""
+
+    name: str
+    form: Optional[str] = None
+    mobile_weapon_id: Optional[str] = None
+    support_weapon_id: Optional[str] = None
+
+
+class Reissue(CamelModel):
+    """A later re-release of a model kit."""
+
+    date: str
+    note: Optional[str] = None
+
+
+class ModelKit(CamelModel):
+    """A Gunpla or garage kit release for Advance of Zeta / A.O.Z Re-Boot."""
+
+    id: str
+    name: str
+    japanese_name: Optional[str] = None
+    series: str
+    other_series: list[str] = Field(default_factory=list)
+    line: str
+    grade: Optional[str] = None
+    # Usually a single scale such as "1/144"; "Mixed" for multi-scale sets.
+    scale: str
+    product_number: Optional[str] = None
+    kit_type: KitType
+    material: str = "Plastic"
+    manufacturer: str
+    distribution: Distribution
+    exclusive: bool
+    # "YYYY-MM" (or "YYYY" when only the year is known).
+    release_date: str
+    price: Optional[Price] = None
+    transformable: bool = False
+    units: list[KitUnit] = Field(default_factory=list)
+    # Ids of the kits this one is a parts/color variant of.
+    based_on: list[str] = Field(default_factory=list)
+    # Ids of the kits needed to build this one (for expansion sets).
+    requires: list[str] = Field(default_factory=list)
+    reissues: list[Reissue] = Field(default_factory=list)
+    notes: list[str] = Field(default_factory=list)
+    image: Optional[str] = None
+    image_url: Optional[str] = None
+    wiki_url: Optional[str] = None
+    source_page: Optional[str] = None
+    extra: dict[str, str] = Field(default_factory=dict)
+
+
+class CharacterGroup(str, Enum):
+    """The group a character is listed under on the series page."""
+
+    TITANS_TEST_TEAM = "Titans Test Team (T3)"
+    EARTH_FEDERATION = "Earth Federation"
+    AEUG = "AEUG"
+    ZEON_REMNANTS = "Zeon Remnants"
+    OTHER = "Other"
+
+
+class UnitRole(str, Enum):
+    """How a character is associated with a unit."""
+
+    PILOT = "pilot"
+    CREW = "crew"
+    CAPTAIN = "captain"
+
+
+class AssociatedUnit(CamelModel):
+    """A unit a character pilots, crews, or captains, linked to its Mobile/Support Weapon entry."""
+
+    name: str
+    role: UnitRole
+    note: Optional[str] = None
+    mobile_weapon_id: Optional[str] = None
+    support_weapon_id: Optional[str] = None
+
+
+class Character(CamelModel):
+    """A character from Advance of Zeta and their profile."""
+
+    id: str
+    slug: str
+    name: str
+    japanese_name: Optional[str] = None
+    romanized_name: Optional[str] = None
+    group: CharacterGroup
+    # Description of the character from the series page.
+    role: Optional[str] = None
+    summary: Optional[str] = None
+    species: Optional[str] = None
+    gender: Optional[str] = None
+    # A plain number or annotated text such as "23 (U.C. 0084)".
+    age: Optional[Union[int, str]] = None
+    birthdate: Optional[str] = None
+    deathdate: Optional[str] = None
+    # e.g. "Alive" or "Killed In Action (February U.C.0088)".
+    status: Optional[str] = None
+    nationality: Optional[str] = None
+    affiliations: list[str] = Field(default_factory=list)
+    occupations: list[str] = Field(default_factory=list)
+    rank: Optional[str] = None
+    era: Optional[str] = None
+    appearances: list[str] = Field(default_factory=list)
+    associated_units: list[AssociatedUnit] = Field(default_factory=list)
+    image: Optional[str] = None
+    image_url: Optional[str] = None
+    images: list[Image] = Field(default_factory=list)
+    has_wiki_page: bool = False
+    wiki_url: Optional[str] = None
