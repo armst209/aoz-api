@@ -85,6 +85,15 @@ The API is served at `http://127.0.0.1:8000`, with interactive docs at:
 - Swagger UI: `http://127.0.0.1:8000/docs`
 - ReDoc: `http://127.0.0.1:8000/redoc`
 
+## Testing
+
+The tests use FastAPI's `TestClient` (built on Starlette) and pytest. They swap the Supabase client for an in-memory fake, so they need no database, network or `.env`.
+
+```bash
+pip install pytest
+pytest
+```
+
 ## API reference
 
 All resource endpoints live under `/api/v1`.

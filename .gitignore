@@ -7,3 +7,7 @@
 /supabase
 /.venv
 /.vscode
+
+#python
+__pycache__/
+.pytest_cache/
