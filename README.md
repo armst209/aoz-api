@@ -25,10 +25,13 @@ aoz-api/
 │       ├── support_weapons.py
 │       ├── characters.py
 │       └── model_kits.py
-├── data/                    # Source JSON data used for seeding
-├── scripts/                 # Seed scripts that load data/*.json into Supabase
-└── supabase/migrations/     # Table definitions and search_* SQL functions
+├── tests/                   # pytest suite (uses an in-memory Supabase fake)
+├── data/                    # Source JSON data used for seeding (local only)
+├── scripts/                 # Seed scripts that load data/*.json into Supabase (local only)
+└── supabase/migrations/     # Tables, search_* SQL functions and sort columns (local only)
 ```
+
+> `data/`, `scripts/` and `supabase/` are git-ignored, so they exist only in a local checkout that has them.
 
 ## Getting started
 
@@ -60,7 +63,7 @@ The API only reads data, so the `anon` key is enough if your RLS policies allow 
 
 ### 3. Set up the database
 
-Apply the migrations in [supabase/migrations/](supabase/migrations/) in filename order. You can use the Supabase CLI (`supabase db push`) or paste each one into the SQL editor. They create the tables and the `search_*` functions, and enable `pg_trgm`.
+Apply the migrations in [supabase/migrations/](supabase/migrations/) in filename order. You can use the Supabase CLI (`supabase db push`) or paste each one into the SQL editor. They create the tables and the `search_*` functions, enable `pg_trgm`, and add the generated sort columns (`age_sort`, `birthdate_sort`, `scale_sort`, `grade_sort`) that the list endpoints use for ordering.
 
 ### 4. Seed the data
 
@@ -110,6 +113,30 @@ All resource endpoints live under `/api/v1`.
 | GET | `/api/v1/model_kits/` | List all model kits |
 | GET | `/api/v1/model_kits/search` | Fuzzy-search model kits |
 
+### Listing and sorting
+
+The list endpoints (`/api/v1/<resource>/`) accept these parameters:
+
+| Param | Default | Description |
+| ----- | ------- | ----------- |
+| `order_by` | `name` | The field to sort by, ascending (see below) |
+| `limit_by` | none | The maximum number of results (at least 1). Omit it to return everything |
+
+The sort fields each resource supports:
+
+| Resource | `order_by` values |
+| -------- | ----------------- |
+| Mobile weapons | `name`, `model_number` (or `modelNumber`) |
+| Support weapons | `name`, `model_number` (or `modelNumber`) |
+| Characters | `name`, `age`, `birthdate` |
+| Model kits | `name`, `scale`, `grade` |
+
+When you sort by anything other than `name`, records with no value sort last and ties are broken by name. Character `age` and `birthdate`, and model kit `scale` and `grade`, sort by numeric generated columns rather than as text:
+
+- **`age` / `birthdate`**: the leading number of the value, so `"23 (U.C. 0084)"` sorts as `23`
+- **`scale`**: the denominator, so kits go from largest to smallest (`1/60`, `1/100`, `1/144`, …). `Mixed` sorts last
+- **`grade`**: by tier: Entry, High, Real, Master, then Perfect Grade. Ungraded or unknown grades sort last
+
 ### Search
 
 Search endpoints combine every filter you pass and return results ranked best match first. You must pass **at least one** filter, or the endpoint returns `400`.
@@ -142,6 +169,12 @@ Some model kit filters accept loose formats:
 # Typos still match
 curl "http://127.0.0.1:8000/api/v1/characters/search?name=hazle"
 
+# The 10 largest-scale model kits (1/60 first)
+curl "http://127.0.0.1:8000/api/v1/model_kits/?order_by=scale&limit_by=10"
+
+# Characters sorted by age
+curl "http://127.0.0.1:8000/api/v1/characters/?order_by=age"
+
 # Combine filters
 curl "http://127.0.0.1:8000/api/v1/mobile_weapons/search?faction=Titans&era=UC&limit=5"
 
@@ -156,7 +189,7 @@ Responses use camelCase keys, for example `modelNumber`, `unitType` and `imageUr
 | Status | Meaning |
 | ------ | ------- |
 | `400` | A search request had no filters |
-| `422` | A query parameter was invalid, such as a malformed UUID or an out-of-range `limit` |
+| `422` | A query parameter was invalid, such as a malformed UUID, an out-of-range `limit`/`limit_by` or an unknown `order_by` |
 | `502` | The upstream Supabase request failed |
 
 ## Notes
