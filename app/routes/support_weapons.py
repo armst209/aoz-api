@@ -5,7 +5,7 @@ from uuid import UUID
 from fastapi import APIRouter, HTTPException, Query
 from postgrest.exceptions import APIError
 from app.db import supabase
-from app.schemas import SupportWeapon
+from app.schemas import SupportWeapon, SupportWeaponsOrderBy
 
 
 router = APIRouter(prefix="/api/v1/support_weapons", tags=["Support Weapons"])
@@ -61,15 +61,23 @@ def _to_support_weapon(row: dict) -> dict:
 
 
 @router.get("/", response_model=list[SupportWeapon])
-def get_all_support_weapons():
+def get_all_support_weapons(
+    order_by: SupportWeaponsOrderBy = SupportWeaponsOrderBy.NAME,
+    limit_by: int | None = Query(None, ge=1),
+):
     """Retrieve all Support Weapons from Supabase"""
+    query = (
+        supabase.table("support_weapons")
+        .select(SUPPORT_WEAPON_SELECT)
+        .order(order_by.value, nullsfirst=False)
+    )
+    if order_by is not SupportWeaponsOrderBy.NAME:
+        query = query.order("name")  # tie-breaker for equal or missing values
+    if limit_by is not None:
+        query = query.limit(limit_by)
+
     try:
-        response = (
-            supabase.table("support_weapons")
-            .select(SUPPORT_WEAPON_SELECT)
-            .order("name")
-            .execute()
-        )
+        response = query.execute()
     except APIError as e:
         raise HTTPException(status_code=502, detail=e.message)
 

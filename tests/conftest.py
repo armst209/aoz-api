@@ -35,14 +35,22 @@ class FakeQuery:
         self.params = params
         self.select_columns: str | None = None
         self.order_by: str | None = None
+        self.orders: list[tuple[str, dict]] = []
+        self.limit_to: int | None = None
         self.in_filter: tuple[str, list] | None = None
 
     def select(self, columns: str) -> "FakeQuery":
         self.select_columns = columns
         return self
 
-    def order(self, column: str) -> "FakeQuery":
-        self.order_by = column
+    def order(self, column: str, **options) -> "FakeQuery":
+        if self.order_by is None:
+            self.order_by = column
+        self.orders.append((column, options))
+        return self
+
+    def limit(self, size: int) -> "FakeQuery":
+        self.limit_to = size
         return self
 
     def in_(self, column: str, values: list) -> "FakeQuery":

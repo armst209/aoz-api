@@ -7,7 +7,7 @@ from uuid import UUID
 from fastapi import APIRouter, HTTPException, Query
 from postgrest.exceptions import APIError
 from app.db import supabase
-from app.schemas import ModelKit
+from app.schemas import ModelKit, ModelKitsOrderBy
 
 
 router = APIRouter(prefix="/api/v1/model_kits", tags=["Model Kits"])
@@ -97,16 +97,34 @@ def _parse_price(value: str) -> float:
     return amount
 
 
+# scale and grade are text that sorts wrongly ("1/60" after "1/400", Perfect
+# Grade before Real Grade), so they sort by the generated columns from the
+# model_kits_sort_columns migration instead.
+SORT_COLUMNS = {
+    ModelKitsOrderBy.NAME: "name",
+    ModelKitsOrderBy.SCALE: "scale_sort",
+    ModelKitsOrderBy.GRADE: "grade_sort",
+}
+
+
 @router.get("/", response_model=list[ModelKit])
-def get_all_model_kits():
+def get_all_model_kits(
+    order_by: ModelKitsOrderBy = ModelKitsOrderBy.NAME,
+    limit_by: int | None = Query(None, ge=1),
+):
     """Retrieve all Model Kits from Supabase"""
+    query = (
+        supabase.table("model_kits")
+        .select(MODEL_KIT_SELECT)
+        .order(SORT_COLUMNS[order_by], nullsfirst=False)
+    )
+    if order_by is not ModelKitsOrderBy.NAME:
+        query = query.order("name")  # tie-breaker for equal or missing values
+    if limit_by is not None:
+        query = query.limit(limit_by)
+
     try:
-        response = (
-            supabase.table("model_kits")
-            .select(MODEL_KIT_SELECT)
-            .order("name")
-            .execute()
-        )
+        response = query.execute()
     except APIError as e:
         raise HTTPException(status_code=502, detail=e.message)
 

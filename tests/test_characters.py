@@ -73,3 +73,28 @@ def test_search_maps_each_filter_to_rpc_param(client, fake_db, query_param, valu
     assert response.status_code == 200
     [call] = fake_db.calls("rpc", "search_characters")
     assert call.params[rpc_param] == value
+
+
+@pytest.mark.parametrize("order_by, expected", [
+    ("name", [("name", {"nullsfirst": False})]),
+    ("age", [("age_sort", {"nullsfirst": False}), ("name", {})]),
+    ("birthdate", [("birthdate_sort", {"nullsfirst": False}), ("name", {})]),
+])
+def test_list_orders_by_sortable_column(client, fake_db, order_by, expected):
+    client.get(f"{URL}/", params={"order_by": order_by})
+
+    [query] = fake_db.calls("table", "characters")
+    assert query.orders == expected
+    assert query.limit_to is None
+
+
+def test_list_applies_limit(client, fake_db):
+    client.get(f"{URL}/", params={"limit_by": 5})
+
+    [query] = fake_db.calls("table", "characters")
+    assert query.limit_to == 5
+
+
+@pytest.mark.parametrize("params", [{"order_by": "rank"}, {"limit_by": 0}])
+def test_list_rejects_bad_ordering_params(client, params):
+    assert client.get(f"{URL}/", params=params).status_code == 422

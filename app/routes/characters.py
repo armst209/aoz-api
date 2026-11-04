@@ -3,7 +3,7 @@ from uuid import UUID
 from fastapi import APIRouter, HTTPException, Query
 from postgrest.exceptions import APIError
 from app.db import supabase
-from app.schemas import Character
+from app.schemas import Character, CharacterOrderBy
 
 
 router = APIRouter(prefix="/api/v1/characters", tags=["Characters"])
@@ -33,16 +33,33 @@ def _to_character(row: dict) -> dict:
     }
 
 
+# age is jsonb and birthdate is free text, so they sort by the numeric
+# generated columns from the characters_sort_columns migration instead.
+SORT_COLUMNS = {
+    CharacterOrderBy.NAME: "name",
+    CharacterOrderBy.AGE: "age_sort",
+    CharacterOrderBy.BIRTHDATE: "birthdate_sort",
+}
+
+
 @router.get("/", response_model=list[Character])
-def get_all_characters():
+def get_all_characters(
+    order_by: CharacterOrderBy = CharacterOrderBy.NAME,
+    limit_by: int | None = Query(None, ge=1),
+):
     """Retrieve all Characters from Supabase"""
+    query = (
+        supabase.table("characters")
+        .select(CHARACTER_SELECT)
+        .order(SORT_COLUMNS[order_by], nullsfirst=False)
+    )
+    if order_by is not CharacterOrderBy.NAME:
+        query = query.order("name")  # tie-breaker for equal or missing values
+    if limit_by is not None:
+        query = query.limit(limit_by)
+
     try:
-        response = (
-            supabase.table("characters")
-            .select(CHARACTER_SELECT)
-            .order("name")
-            .execute()
-        )
+        response = query.execute()
     except APIError as e:
         raise HTTPException(status_code=502, detail=e.message)
 

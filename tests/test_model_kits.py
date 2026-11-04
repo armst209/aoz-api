@@ -158,3 +158,28 @@ def test_search_combines_normalized_filters(client, fake_db):
         "p_scale": "1/144", "p_manufacturer": None, "p_release_date": "2004", "p_price": None,
         "p_threshold": 0.3, "p_limit": 10,
     }
+
+
+@pytest.mark.parametrize("order_by, expected", [
+    ("name", [("name", {"nullsfirst": False})]),
+    ("scale", [("scale_sort", {"nullsfirst": False}), ("name", {})]),
+    ("grade", [("grade_sort", {"nullsfirst": False}), ("name", {})]),
+])
+def test_list_orders_by_sortable_column(client, fake_db, order_by, expected):
+    client.get(f"{URL}/", params={"order_by": order_by})
+
+    [query] = fake_db.calls("table", "model_kits")
+    assert query.orders == expected
+    assert query.limit_to is None
+
+
+def test_list_applies_limit(client, fake_db):
+    client.get(f"{URL}/", params={"limit_by": 5})
+
+    [query] = fake_db.calls("table", "model_kits")
+    assert query.limit_to == 5
+
+
+@pytest.mark.parametrize("params", [{"order_by": "price"}, {"limit_by": 0}])
+def test_list_rejects_bad_ordering_params(client, params):
+    assert client.get(f"{URL}/", params=params).status_code == 422

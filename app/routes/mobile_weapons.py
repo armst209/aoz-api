@@ -5,7 +5,7 @@ from uuid import UUID
 from fastapi import APIRouter, HTTPException, Query
 from postgrest.exceptions import APIError
 from app.db import supabase
-from app.schemas import MobileWeapon
+from app.schemas import MobileWeapon, MobileWeaponsOrderBy
 
 
 router = APIRouter(prefix="/api/v1/mobile_weapons", tags=["Mobile Weapons"])
@@ -16,7 +16,6 @@ CHILD_TABLES = (
     "mobile_weapon_armaments",
     "mobile_weapon_images",
 )
-
 
 
 # Embeds every child table in one request. Specs is 1:1 (its key is also the
@@ -55,13 +54,13 @@ def _to_mobile_weapon(row: dict) -> dict:
 
 
 @router.get("/", response_model=list[MobileWeapon])
-def get_all_mobile_weapons():
+def get_all_mobile_weapons(order_by: MobileWeaponsOrderBy = MobileWeaponsOrderBy.NAME, limit_by: int | None = None):
     """Retrieve all Mobile Weapons from Supabase"""
     try:
         response = (
             supabase.table("mobile_weapons")
             .select(MOBILE_WEAPON_SELECT)
-            .order("name")
+            .order(order_by.value).limit(limit_by)
             .execute()
         )
     except APIError as e:

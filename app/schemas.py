@@ -336,3 +336,45 @@ class Character(CamelModel):
     images: list[Image] = Field(default_factory=list)
     has_wiki_page: bool = False
     wiki_url: Optional[str] = None
+
+
+# Method Parameters
+
+class MobileWeaponsOrderBy(str, Enum):
+    """Column to sort Mobile Weapons by. Values are the database column names."""
+
+    NAME = "name"
+    MODEL_NUMBER = "model_number"
+
+    @classmethod
+    def _missing_(cls, value):
+        """Accept camelCase aliases, e.g. ?order_by=modelNumber."""
+        aliases = {"modelNumber": cls.MODEL_NUMBER}
+        return aliases.get(value)
+
+
+class SupportWeaponsOrderBy(str, Enum):
+    """Column to sort Support Weapons by. Values are the database column names."""
+
+    NAME = "name"
+    MODEL_NUMBER = "model_number"
+
+    @classmethod
+    def _missing_(cls, value):
+        """Accept camelCase aliases, e.g. ?order_by=modelNumber."""
+        aliases = {"modelNumber": cls.MODEL_NUMBER}
+        return aliases.get(value)
+
+
+class CharacterOrderBy(str, Enum):
+    """Column to sort Characters by. Values are the database column names, age & birthdate."""
+    NAME = "name"
+    AGE = "age"
+    BIRTHDATE = "birthdate"
+    
+class ModelKitsOrderBy(str, Enum):
+    """Column to sort Model Kits by. Values are the database column names, scale & grade."""
+    NAME = "name"
+    SCALE = "scale"
+    GRADE = "grade"
+
