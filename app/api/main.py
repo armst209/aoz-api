@@ -1,8 +1,8 @@
 from fastapi import FastAPI
-from app.routes.mobile_weapons import router as mobile_weapons_router
-from app.routes.characters import router as characters_router
-from app.routes.support_weapons import router as support_weapons_router
-from app.routes.model_kits import router as model_kits_router
+from app.api.routes.mobile_weapons import router as mobile_weapons_router
+from app.api.routes.characters import router as characters_router
+from app.api.routes.support_weapons import router as support_weapons_router
+from app.api.routes.model_kits import router as model_kits_router
 from fastapi.middleware.cors import CORSMiddleware
 app = FastAPI()
 

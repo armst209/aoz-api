@@ -1,11 +1,10 @@
-"""Routes for retrieving Support Weapons."""
 
 from uuid import UUID
-
 from fastapi import APIRouter, HTTPException, Query
 from postgrest.exceptions import APIError
-from app.db import supabase
+from app.core.db import supabase
 from app.schemas import SupportWeapon, SupportWeaponsOrderBy
+from app.utils import _to_support_weapon
 
 
 router = APIRouter(prefix="/api/v1/support_weapons", tags=["Support Weapons"])
@@ -23,41 +22,6 @@ SUPPORT_WEAPON_SELECT = (
     "support_weapon_images(position,file,caption)"
 )
 
-
-def _in_order(rows: list[dict] | None) -> list[dict]:
-    """Sort child rows by position and drop the position column."""
-    return [
-        {key: value for key, value in row.items() if key != "position"}
-        for row in sorted(rows or [], key=lambda r: r["position"])
-    ]
-
-
-def _group_by_category(rows: list[dict] | None) -> dict[str, list[str]]:
-    """Turn (category, position, item) rows back into {category: [items in order]}."""
-    grouped: dict[str, list[str]] = {}
-    for row in sorted(rows or [], key=lambda r: r["position"]):
-        grouped.setdefault(row["category"], []).append(row["item"])
-    return grouped
-
-
-def _one_to_one(row: dict | None) -> dict:
-    """A 1:1 child row without its foreign key column."""
-    return {key: value for key, value in (row or {}).items() if key != "support_weapon_id"}
-
-
-def _to_support_weapon(row: dict) -> dict:
-    """Reassemble a joined Supabase row into the nested SupportWeapon shape."""
-    return {
-        **row,
-        "specs": _one_to_one(row.pop("support_weapon_specs")),
-        "mobile_suit_operations": {
-            **_one_to_one(row.pop("support_weapon_ms_operations")),
-            "complement": _in_order(row.pop("support_weapon_complement")),
-        },
-        "equipment": _group_by_category(row.pop("support_weapon_equipment")),
-        "armaments": _group_by_category(row.pop("support_weapon_armaments")),
-        "images": _in_order(row.pop("support_weapon_images")),
-    }
 
 
 @router.get("/", response_model=list[SupportWeapon])

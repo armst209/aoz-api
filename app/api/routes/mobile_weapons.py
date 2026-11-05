@@ -1,11 +1,9 @@
-"""Routes for retrieving Mobile Weapons."""
-
 from uuid import UUID
-
 from fastapi import APIRouter, HTTPException, Query
 from postgrest.exceptions import APIError
-from app.db import supabase
+from app.core.db import supabase
 from app.schemas import MobileWeapon, MobileWeaponsOrderBy
+from app.utils import _to_mobile_weapon
 
 
 router = APIRouter(prefix="/api/v1/mobile_weapons", tags=["Mobile Weapons"])
@@ -28,29 +26,6 @@ MOBILE_WEAPON_SELECT = (
     "mobile_weapon_images(position,file,caption)"
 )
 
-
-def _group_by_category(rows: list[dict]) -> dict[str, list[str]]:
-    """Turn (category, position, item) rows back into {category: [items in order]}."""
-    grouped: dict[str, list[str]] = {}
-    for row in sorted(rows, key=lambda r: r["position"]):
-        grouped.setdefault(row["category"], []).append(row["item"])
-    return grouped
-
-
-def _to_mobile_weapon(row: dict) -> dict:
-    """Reassemble a joined Supabase row into the nested MobileWeapon shape."""
-    specs = row.pop("mobile_weapon_specs") or {}
-    specs.pop("mobile_weapon_id", None)
-    images = sorted(row.pop("mobile_weapon_images") or [],
-                    key=lambda r: r["position"])
-
-    return {
-        **row,
-        "specs": specs,
-        "equipment": _group_by_category(row.pop("mobile_weapon_equipment") or []),
-        "armaments": _group_by_category(row.pop("mobile_weapon_armaments") or []),
-        "images": [{"file": i["file"], "caption": i["caption"]} for i in images],
-    }
 
 
 @router.get("/", response_model=list[MobileWeapon])

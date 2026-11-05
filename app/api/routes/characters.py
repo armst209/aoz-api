@@ -1,9 +1,10 @@
+from app.utils import _to_character
 from uuid import UUID
-
 from fastapi import APIRouter, HTTPException, Query
 from postgrest.exceptions import APIError
-from app.db import supabase
+from app.core.db import supabase
 from app.schemas import Character, CharacterOrderBy
+
 
 
 router = APIRouter(prefix="/api/v1/characters", tags=["Characters"])
@@ -14,23 +15,6 @@ CHARACTER_SELECT = (
     "character_associated_units(position,name,role,note,mobile_weapon_id,support_weapon_id),"
     "character_images(position,file,caption)"
 )
-
-
-def _in_order(rows: list[dict] | None) -> list[dict]:
-    """Sort child rows by position and drop the position column."""
-    return [
-        {key: value for key, value in row.items() if key != "position"}
-        for row in sorted(rows or [], key=lambda r: r["position"])
-    ]
-
-
-def _to_character(row: dict) -> dict:
-    """Reassemble a joined Supabase row into the nested Character shape."""
-    return {
-        **row,
-        "associated_units": _in_order(row.pop("character_associated_units")),
-        "images": _in_order(row.pop("character_images")),
-    }
 
 
 # age is jsonb and birthdate is free text, so they sort by the numeric

@@ -19,8 +19,8 @@ os.environ.setdefault(
 from fastapi.testclient import TestClient  # noqa: E402
 from postgrest.exceptions import APIError  # noqa: E402
 
-from app.main import app  # noqa: E402
-from app.routes import characters, mobile_weapons, model_kits, support_weapons  # noqa: E402
+from app.api.main import app  # noqa: E402
+from app.api.routes import characters, mobile_weapons, model_kits, support_weapons  # noqa: E402
 
 ROUTE_MODULES = (characters, mobile_weapons, model_kits, support_weapons)
 
